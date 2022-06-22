@@ -11,10 +11,12 @@ import axios from "axios"
 export interface searchResultsState {
   searchResults: Album[]
   status: "idle" | "loading" | "failed"
+  searchTerm: string
 }
 
 const initialState: searchResultsState = {
   searchResults: ALBUM_DATA_ARR,
+  searchTerm: "",
   status: "idle",
 }
 
@@ -40,6 +42,9 @@ export const searchResultsSlice = createSlice({
   initialState,
   // The `reducers` field lets us define reducers and generate associated actions
   reducers: {
+    setSearchTerm: (state, action: PayloadAction<string>) => {
+      state.searchTerm = action.payload
+    },
     // Use the PayloadAction type to declare the contents of `action.payload`
   },
   // The `extraReducers` field lets the slice handle actions defined elsewhere,
@@ -51,9 +56,7 @@ export const searchResultsSlice = createSlice({
       })
       .addCase(searchAlbumAsync.fulfilled, (state, action) => {
         state.status = "idle"
-
         state.searchResults = action.payload.results
-        console.log("async", state.searchResults)
       })
       .addCase(searchAlbumAsync.rejected, (state) => {
         state.status = "failed"
@@ -61,11 +64,7 @@ export const searchResultsSlice = createSlice({
   },
 })
 
-// export const {
-//   increment,
-//   decrement,
-//   incrementByAmount,
-// } = searchResultsSlice.actions
+export const { setSearchTerm } = searchResultsSlice.actions
 
 // The function below is called a selector and allows us to select a value from
 // the state. Selectors can also be defined inline where they're used instead of

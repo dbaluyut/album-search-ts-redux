@@ -1,6 +1,9 @@
 import React, { ReactFragment, useState } from "react"
 import { useAppDispatch } from "../../app/hooks"
-import { searchAlbumAsync } from "../SearchResults/searchResultsSlice"
+import {
+  searchAlbumAsync,
+  setSearchTerm,
+} from "../SearchResults/searchResultsSlice"
 import "./SearchBar.scss"
 
 export default function SearchBar({ placeholder = "search" }) {
@@ -12,6 +15,7 @@ export default function SearchBar({ placeholder = "search" }) {
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
+    dispatch(setSearchTerm(input))
     dispatch(searchAlbumAsync(input))
   }
 
