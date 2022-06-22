@@ -1,16 +1,18 @@
 import React, { ReactFragment, useState } from "react"
+import { useAppDispatch } from "../../app/hooks"
+import { searchAlbumAsync } from "../SearchResults/searchResultsSlice"
 import "./SearchBar.scss"
 
-export default function SearchBar() {
+export default function SearchBar({ placeholder = "search" }) {
   const [input, setInput] = useState("")
-
+  const dispatch = useAppDispatch()
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     setInput(e.target.value)
   }
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
-    console.log(input)
+    dispatch(searchAlbumAsync(input))
   }
 
   return (
@@ -19,7 +21,7 @@ export default function SearchBar() {
         <input
           data-testid="search-input"
           type="text"
-          placeholder="search"
+          placeholder={placeholder}
           value={input}
           onChange={handleChange}
         />

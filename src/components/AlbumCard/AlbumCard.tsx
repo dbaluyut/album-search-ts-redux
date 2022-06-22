@@ -1,10 +1,11 @@
+import React from "react"
 import "./AlbumCard.scss"
 
 type AlbumProps = {
   album: Album
 }
 
-type Album = {
+export interface Album {
   artistId: number
   collectionId: number
   artistName: string

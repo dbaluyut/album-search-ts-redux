@@ -14,5 +14,13 @@ test("album card renders correctly", () => {
 
   const testArr = [cardEl, imgEl, albumNameEl, artistNameEl]
 
-  testArr.forEach((item) => expect(cardEl).toBeInTheDocument())
+  testArr.forEach((item) => expect(item).toBeInTheDocument())
+})
+
+test("album image has alt text", () => {
+  render(<AlbumCard album={albumData} />)
+
+  const imgEl = screen.getByTestId("albumimg")
+
+  expect(imgEl.getAttribute("alt").length).toBeGreaterThan(0)
 })
