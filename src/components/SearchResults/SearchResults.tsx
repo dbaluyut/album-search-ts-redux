@@ -4,6 +4,7 @@ import { useAppDispatch, useAppSelector } from "../../app/hooks"
 import {
   searchAlbumAsync,
   selectsearchResults,
+  loadMoreResults,
 } from "./searchResultsSlice"
 import "./SearchResults.scss"
 import { useEffect } from "react"
@@ -11,22 +12,37 @@ import { useEffect } from "react"
 export default function SearchResults() {
   const dispatch = useAppDispatch()
 
-  const { searchResults, searchTerm, status } = useAppSelector(
-    selectsearchResults
-  )
+  const { searchResults, searchTerm, status, arrayIndex } =
+    useAppSelector(selectsearchResults)
+
+  const paginatedSearchResults = searchResults.slice(0, arrayIndex)
 
   useEffect(() => {
     dispatch(searchAlbumAsync(searchTerm))
   }, [])
 
+  function handleLoadMore() {
+    dispatch(loadMoreResults())
+  }
+
   return (
     <section role="searchresults" className="SearchResults">
-      <h1>search term here</h1>
-      <div className="grid-container">
-        {searchResults.map((album) => {
-          return <AlbumCard album={album} />
-        })}
+      {searchResults.length === 0 ? (
+        <h1>search term here</h1>
+      ) : (
+        <h1>
+          {searchResults.length} results for "{searchTerm}"
+        </h1>
+      )}
+      <div role="resultscontainer" className="grid-container">
+        {searchResults &&
+          paginatedSearchResults.map((album) => {
+            return <AlbumCard album={album} />
+          })}
       </div>
+      {searchResults.length > 0 && (
+        <button onClick={handleLoadMore}>load more</button>
+      )}
     </section>
   )
 }

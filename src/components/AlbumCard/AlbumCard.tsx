@@ -16,7 +16,7 @@ export interface Album {
 
 export default function AlbumCard({ album }: AlbumProps) {
   return (
-    <div data-testid="card" className="AlbumCard">
+    <div role="card" data-testid="card" className="AlbumCard">
       <img
         data-testid="albumimg"
         src={album.artworkUrl100}

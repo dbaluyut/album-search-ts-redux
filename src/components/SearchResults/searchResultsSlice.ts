@@ -12,12 +12,14 @@ export interface searchResultsState {
   searchResults: Album[]
   status: "idle" | "loading" | "failed"
   searchTerm: string
+  arrayIndex: number
 }
 
 const initialState: searchResultsState = {
-  searchResults: ALBUM_DATA_ARR,
+  searchResults: [],
   searchTerm: "",
   status: "idle",
+  arrayIndex: 10,
 }
 
 export const searchAlbumAsync = createAsyncThunk(
@@ -38,6 +40,9 @@ export const searchResultsSlice = createSlice({
     setSearchTerm: (state, action: PayloadAction<string>) => {
       state.searchTerm = action.payload
     },
+    loadMoreResults: (state) => {
+      state.arrayIndex += 5
+    },
   },
 
   extraReducers: (builder) => {
@@ -55,7 +60,8 @@ export const searchResultsSlice = createSlice({
   },
 })
 
-export const { setSearchTerm } = searchResultsSlice.actions
+export const { setSearchTerm, loadMoreResults } =
+  searchResultsSlice.actions
 
 export const selectsearchResults = (state: RootState) =>
   state.searchState
