@@ -21,7 +21,7 @@ export default function SearchBar({ placeholder = "search" }) {
 
   return (
     <div className="SearchBar">
-      <form action="" onSubmit={handleSubmit}>
+      <form role="searchform" action="" onSubmit={handleSubmit}>
         <input
           data-testid="search-input"
           type="text"

@@ -2,7 +2,7 @@ import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit"
 import searchResultsReducer from "../components/SearchResults/searchResultsSlice"
 export const store = configureStore({
   reducer: {
-    searchResults: searchResultsReducer,
+    searchState: searchResultsReducer,
   },
 })
 

@@ -9,16 +9,21 @@ import "./SearchResults.scss"
 import { useEffect } from "react"
 
 export default function SearchResults() {
-  const results = useAppSelector(selectsearchResults)
   const dispatch = useAppDispatch()
+
+  const { searchResults, searchTerm, status } = useAppSelector(
+    selectsearchResults
+  )
+
   useEffect(() => {
-    dispatch(searchAlbumAsync("eminem"))
+    dispatch(searchAlbumAsync(searchTerm))
   }, [])
+
   return (
     <section role="searchresults" className="SearchResults">
       <h1>search term here</h1>
       <div className="grid-container">
-        {results.map((album) => {
+        {searchResults.map((album) => {
           return <AlbumCard album={album} />
         })}
       </div>

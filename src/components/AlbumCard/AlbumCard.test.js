@@ -1,5 +1,5 @@
 import React from "react"
-import { fireEvent, render, screen } from "@testing-library/react"
+import { render, screen } from "@testing-library/react"
 import "@testing-library/jest-dom/extend-expect"
 import AlbumCard from "./AlbumCard"
 import albumData from "../../mock/albumData"
