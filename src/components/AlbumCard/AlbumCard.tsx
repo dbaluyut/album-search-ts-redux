@@ -22,8 +22,10 @@ export default function AlbumCard({ album }: AlbumProps) {
         src={album.artworkUrl100}
         alt={album.collectionName}
       />
-      <h2 role="artistname">{album.artistName}</h2>
-      <h2 role="albumname">{album.collectionName}</h2>
+      <div>
+        <h2 role="artistname">{album.artistName}</h2>
+        <h2 role="albumname">{album.collectionName}</h2>
+      </div>
     </div>
   )
 }

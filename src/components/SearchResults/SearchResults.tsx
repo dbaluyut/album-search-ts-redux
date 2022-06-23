@@ -41,7 +41,9 @@ export default function SearchResults() {
           })}
       </div>
       {searchResults.length > 0 && (
-        <button onClick={handleLoadMore}>load more</button>
+        <button role="loadmorebutton" onClick={handleLoadMore}>
+          load more
+        </button>
       )}
     </section>
   )

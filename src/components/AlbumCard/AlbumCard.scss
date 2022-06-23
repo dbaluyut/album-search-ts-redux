@@ -1,3 +1,16 @@
 .AlbumCard {
-  border: 1px solid red;
+  padding: 1rem;
+  border-radius: 1rem;
+
+  div {
+    overflow: hidden;
+  }
+
+  img {
+    width: 100%;
+  }
+}
+
+.AlbumCard:hover {
+  background-color: rgb(252, 246, 218);
 }

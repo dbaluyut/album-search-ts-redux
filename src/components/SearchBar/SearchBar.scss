@@ -1,4 +1,17 @@
 .SearchBar {
   border: 1px solid blue;
-  padding: 1rem;
+  background-color: gold;
+  padding: 1.5rem;
+
+  input {
+    padding: 0.75rem 1rem;
+    width: 40%;
+    border-radius: 5rem;
+    background-color: rgb(255, 251, 230);
+    border: none;
+    color: lighgrey;
+    &:focus {
+      outline: none;
+    }
+  }
 }

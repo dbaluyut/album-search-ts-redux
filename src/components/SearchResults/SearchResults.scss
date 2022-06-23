@@ -1,7 +1,5 @@
 .SearchResults {
-  background-color: lightblue;
-
-  & > h1 {
+  h1 {
     padding: 1rem;
   }
 
@@ -9,11 +7,25 @@
     display: grid;
     grid-template-columns: repeat(
       auto-fit,
-      minmax(200px, max-content)
+      minmax(200px, min-content)
     );
     gap: 1rem;
     width: 80%;
     margin: 0 auto;
     justify-content: center;
+  }
+
+  button {
+    margin: 2rem;
+    padding: 1rem 1.5rem;
+    border-radius: 4rem;
+    font-size: 1rem;
+    border: none;
+    background-color: gold;
+    font-weight: 500;
+
+    &:hover {
+      cursor: pointer;
+    }
   }
 }
